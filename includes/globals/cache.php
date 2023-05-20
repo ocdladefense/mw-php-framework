@@ -7,7 +7,11 @@ function cache_set($key, $val) {
 	$val = str_replace('stdClass::__set_state', '(object)', $val);
 	// Write to temp file first to ensure atomicity
 	$tmp = CACHE_DIR ."/$key." . uniqid('', true) . '.tmp';
-	file_put_contents($tmp, '<?php $val = ' . $val . ';', LOCK_EX);
+	$result = file_put_contents($tmp, '<?php $val = ' . $val . ';', LOCK_EX);
+
+	if(false === $result) {
+		throw new \Exception("CACHE_EXCEPTION: Could not write to cache file ({$tmp}).");
+	}
 	rename($tmp, CACHE_DIR."/$key");
  }
 
