@@ -1,0 +1,11 @@
+{
+    "name": "ocdladefense/mw-php-framework",
+    "type": "wordpress-theme",
+    "description": "MediaWiki extension to interface with PHP application server framework.",
+    "config": {
+        "preferred-install": {
+            "ocdladefense/*": "source"
+        }
+    },
+    "require": {}
+}
